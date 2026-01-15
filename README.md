@@ -48,8 +48,8 @@ Website ini dirancang dengan tampilan modern, bersih, dan informatif untuk mendu
 
 | Langkah | Perintah |
 |-------|----------|
-| Clone Repository | `git clone https://github.com/username/minyak-atsirian.git` |
-| Masuk Folder | `cd minyak-atsirian` |
+| Clone Repository | `git clone https://github.com/HariisDermawan/Company-Profile-Minyak-Atsirian.git` |
+| Masuk Folder | `cd Company-Profile-Minyak-Atsirian` |
 | Jalankan | Buka di browser atau server lokal |
 
 ---
