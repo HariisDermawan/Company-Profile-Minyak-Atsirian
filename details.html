@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="id" x-data="{ lang: 'id', open: false }">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Altsirian</title>
+    <link rel="stylesheet" href="css/mian.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body x-data="{ lang: 'id' }">
+    <header class="fixed top-0 left-0 w-full bg-white shadow-md rounded-b-2xl z-50">
+        <div class="max-w-7xl mx-auto px-4 h-24 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-2">
+                <img src="logo/LOGO ATSIRI IN-7.png" alt="Logo" class="max-w-[200px] w-full h-auto object-contain" />
+            </a>
+            <nav class="hidden md:flex space-x-6 items-center">
+                <template x-if="lang === 'id'">
+                    <div class="flex space-x-6 items-center">
+                        <a href="index.html" class="text-base font-medium text-gray-800 hover:text-lime-600">Beranda</a>
+                        <a href="tentangkami.html"
+                            class="text-base font-medium text-gray-800 hover:text-lime-600">Tentang Kami</a>
+                        <a href="layanankami.html"
+                            class="text-base font-medium text-gray-800 hover:text-lime-600">Layanan</a>
+                        <a href="gallery.html"
+                            class="text-base font-medium text-gray-800 hover:text-lime-600">Gallery</a>
+                    </div>
+                </template>
+                <template x-if="lang === 'en'">
+                    <div class="flex space-x-6 items-center">
+                        <a href="index.html" class="text-base font-medium text-gray-800 hover:text-lime-600">Home</a>
+                        <a href="tentangkami.html"
+                            class="text-base font-medium text-gray-800 hover:text-lime-600">About</a>
+                        <a href="layanankami.html"
+                            class="text-base font-medium text-gray-800 hover:text-lime-600">Services</a>
+                        <a href="gallery.html"
+                            class="text-base font-medium text-gray-800 hover:text-lime-600">Gallery</a>
+                    </div>
+                </template>
+                <div
+                    class="flex items-center border rounded-full px-3 py-1 text-base font-medium space-x-3 cursor-pointer select-none">
+                    <div class="flex items-center space-x-1" @click="lang = 'id'"
+                        :class="{ 'text-lime-600 font-bold': lang === 'id' }">
+                        <img src="icon/flagindo.svg" alt="ID" class="w-5 h-4">
+                        <span>IND</span>
+                    </div>
+                    <span class="text-gray-400">|</span>
+                    <div class="flex items-center space-x-1" @click="lang = 'en'"
+                        :class="{ 'text-lime-600 font-bold': lang === 'en' }">
+                        <img src="icon/flaging.svg" alt="EN" class="w-5 h-4">
+                        <span>ENG</span>
+                    </div>
+                </div>
+            </nav>
+            <div class="md:hidden">
+                <button @click="open = !open" class="text-gray-700 focus:outline-none">
+                    <svg x-show="!open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg x-show="open" x-cloak class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div x-show="open" x-cloak class="md:hidden px-4 pb-4 space-y-2">
+            <template x-if="lang === 'id'">
+                <div class="space-y-2">
+                    <a href="index.html"
+                        class="block text-base font-medium text-gray-800 hover:text-lime-600">Beranda</a>
+                    <a href="tentangkami.html"
+                        class="block text-base font-medium text-gray-800 hover:text-lime-600">Tentang Kami</a>
+                    <a href="layanankami.html"
+                        class="block text-base font-medium text-gray-800 hover:text-lime-600">Layanan</a>
+                    <a href="gallery.html"
+                        class="block text-base font-medium text-gray-800 hover:text-lime-600">Gallry</a>
+                </div>
+            </template>
+            <template x-if="lang === 'en'">
+                <div class="space-y-2">
+                    <a href="index.html" class="block text-base font-medium text-gray-800 hover:text-lime-600">Home</a>
+                    <a href="tentangkami.html"
+                        class="block text-base font-medium text-gray-800 hover:text-lime-600">About</a>
+                    <a href="layanankami.html"
+                        class="block text-base font-medium text-gray-800 hover:text-lime-600">Services</a>
+                    <a href="gallery.html"
+                        class="block text-base font-medium text-gray-800 hover:text-lime-600">Gallery</a>
+                </div>
+            </template>
+
+            <!-- Language Switcher Mobile -->
+            <div
+                class="flex items-center border rounded-full px-3 py-1 w-fit mt-2 text-base font-medium space-x-3 cursor-pointer select-none">
+                <div class="flex items-center space-x-1" @click="lang = 'id'"
+                    :class="{ 'text-lime-600 font-bold': lang === 'id' }">
+                    <img src="icon/flagindo.svg" alt="ID" class="w-5 h-4">
+                    <span>IND</span>
+                </div>
+                <span class="text-gray-400">|</span>
+                <div class="flex items-center space-x-1" @click="lang = 'en'"
+                    :class="{ 'text-lime-600 font-bold': lang === 'en' }">
+                    <img src="icon/flaging.svg" alt="EN" class="w-5 h-4">
+                    <span>ENG</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- DETAIL PRODUK -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20 mt-24 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+
+            <!-- CARD GAMBAR -->
+            <div class="bg-white rounded-2xl shadow overflow-hidden" data-aos="fade-right" data-aos-duration="600"
+                data-aos-easing="ease-out-cubic">
+                <div class="h-[420px] overflow-hidden">
+                    <img src="produk/1.png" alt="Minyak Kencur" class="
+                        w-full h-full
+                        object-cover
+                        object-center
+                        transition-[object-position,transform]
+                        duration-300
+                        ease-out
+                        hover:object-top
+                        hover:scale-[1.03]
+                    ">
+                </div>
+            </div>
+
+            <!-- CARD KONTEN -->
+            <div class="bg-white rounded-2xl shadow p-8 space-y-6" data-aos="fade-left" data-aos-duration="600"
+                data-aos-delay="100" data-aos-easing="ease-out-cubic">
+
+                <h1 class="text-3xl font-bold text-gray-900">
+                    <span x-show="lang === 'id'">Minyak Kencur (Kaempferia Galanga)</span>
+                    <span x-show="lang === 'en'">Kencur Essential Oil (Kaempferia Galanga)</span>
+                </h1>
+
+                <p class="text-gray-600 leading-relaxed">
+                    <span x-show="lang === 'id'">
+                        Minyak kencur diekstrak dari rimpang kencur, tanaman herbal yang populer
+                        di Asia Tenggara. Dikenal karena khasiatnya dalam meredakan nyeri otot
+                        dan peradangan serta membantu relaksasi.
+                    </span>
+
+                    <span x-show="lang === 'en'">
+                        Kencur oil is extracted from the rhizome and is used to relieve muscle
+                        pain, inflammation, and promote relaxation.
+                    </span>
+                </p>
+
+                <!-- SPESIFIKASI -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+
+                    <div class="bg-gray-100 p-4 rounded-lg" data-aos="zoom-in" data-aos-delay="200">
+                        <p class="font-semibold">ML</p>
+                        <p class="text-gray-600">10 ML</p>
+                    </div>
+
+                    <div class="bg-gray-100 p-4 rounded-lg" data-aos="zoom-in" data-aos-delay="300">
+                        <p class="font-semibold">
+                            <span x-show="lang==='id'">Cara Penyimpanan : </span>
+                            <span x-show="lang==='en'">Storage</span>
+                        </p>
+                        <p class="text-gray-600">
+                            <span x-show="lang==='id'">
+                                Disimpan di tempat kering, sejuk, dan terhindar dari cahaya matahari
+                            </span>
+                            <span x-show="lang==='en'">
+                                Store in a dry, cool place away from direct sunlight
+                            </span>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <footer class="bg-white text-gray-800 px-4 sm:px-6 lg:px-20 pt-16 pb-10 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+
+            <!-- Logo & Alamat -->
+            <div>
+                <img src="logo/LOGO ATSIRI IN-7.png" alt="Logo" class="w-40 mb-4">
+                <p class="text-sm leading-relaxed text-gray-700">
+                    <span class="font-semibold text-black">
+                        <span x-show="lang === 'id'">Alamat:</span>
+                        <span x-show="lang === 'en'">Address:</span>
+                    </span><br>
+                    <span x-show="lang === 'id'">
+                        Jalan Cileungsing Kp. Krajan Desa Wanayasa Kec.
+                        Wanayasa Kab. Purwakarta
+                    </span>
+                    <span x-show="lang === 'en'">
+                        Jl. Cileungsing, Krajan Hamlet, Wanayasa Village,<br>
+                        Wanayasa Subdistrict, Purwakarta Regency
+                    </span>
+                </p>
+            </div>
+
+            <!-- Navigasi -->
+            <div>
+                <h4 class="text-xl font-semibold text-black mb-4">
+                    <span x-show="lang === 'id'">Navigasi</span>
+                    <span x-show="lang === 'en'">Navigation</span>
+                </h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-[#AEB738] transition">
+                            <span x-show="lang === 'id'">Beranda</span>
+                            <span x-show="lang === 'en'">Home</span>
+                        </a></li>
+                    <li><a href="#" class="hover:text-[#AEB738] transition">
+                            <span x-show="lang === 'id'">Tentang Kami</span>
+                            <span x-show="lang === 'en'">About Us</span>
+                        </a></li>
+                    <li><a href="#" class="hover:text-[#AEB738] transition">
+                            <span x-show="lang === 'id'">Layanan</span>
+                            <span x-show="lang === 'en'">Services</span>
+                        </a></li>
+
+                    <li><a href="#" class="hover:text-[#AEB738] transition">
+                            <span x-show="lang === 'id'">Kontak</span>
+                            <span x-show="lang === 'en'">Contact</span>
+                        </a></li>
+                </ul>
+            </div>
+
+            <!-- Kontak -->
+            <div>
+                <h4 class="text-xl font-semibold text-black mb-4">
+                    <span x-show="lang === 'id'">Kontak Kami</span>
+                    <span x-show="lang === 'en'">Contact Us</span>
+                </h4>
+                <ul class="space-y-2 text-sm text-gray-700">
+                    <li>📞 08222 3491149</li>
+                    <li>✉️ atsirian.company@gmail.com</li>
+                    <li>🌐 www.atsirian.com</li>
+                </ul>
+            </div>
+
+            <!-- Sosial Media -->
+            <div>
+                <h4 class="text-xl font-semibold text-black mb-4">
+                    <span x-show="lang === 'id'">Ikuti Kami</span>
+                    <span x-show="lang === 'en'">Follow Us</span>
+                </h4>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-600 hover:text-[#AEB738] transition">
+                        <img src="icon/instagram.svg" alt="instagram" class="w-6 h-auto">
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-[#AEB738] transition">
+                        <img src="icon/facebook.svg" alt="facebook" class="w-6 h-auto">
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-[#AEB738] transition">
+                        <img src="icon/tiktok.svg" alt="tiktok" class="w-6 h-auto">
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="border-t border-gray-200 mt-10 pt-6 text-center text-sm text-gray-500">
+            &copy; 2025 <span class="text-[#AEB738] font-semibold">Atsiri Nusantara</span>.
+            <span x-show="lang === 'id'">All rights reserved.</span>
+            <span x-show="lang === 'en'">All rights reserved.</span>
+        </div>
+    </footer>
+</body>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+    AOS.init({
+        once: true,      // animasi cuma sekali
+        offset: 80,      // biar gak telat
+        duration: 600,
+        easing: 'ease-out-cubic'
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const animatedElements = [
+            "#aboutImage",
+            "#aboutText",
+            "#vmTitle",
+            "#vmVisi",
+            "#vmMisi"
+        ];
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove("opacity-0", "translate-y-10");
+                    entry.target.classList.add("opacity-100", "translate-y-0");
+                } else {
+                    entry.target.classList.remove("opacity-100", "translate-y-0");
+                    entry.target.classList.add("opacity-0", "translate-y-10");
+                }
+            });
+        }, {
+            threshold: 0.2
+        });
+
+        animatedElements.forEach(id => {
+            const el = document.querySelector(id);
+            if (el) observer.observe(el);
+        });
+    });
+</script>
+
+</html>

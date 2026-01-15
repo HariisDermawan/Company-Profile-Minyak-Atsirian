@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id" x-data="{ lang: 'id', open: false }">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Altsirian</title>
+    <link rel="stylesheet" href="css/mian.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+</head>
+
+<body x-data="{ lang: 'id' }">
+    <header class="fixed top-0 left-0 w-full bg-white shadow-md rounded-b-2xl z-50">
+        <div class="max-w-7xl mx-auto px-4 h-24 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-2">
+                <img src="logo/LOGO ATSIRI IN-7.png" alt="Logo" class="max-w-[200px] w-full h-auto object-contain" />
+            </a>
+            <nav class="hidden md:flex space-x-6 items-center">
+                <template x-if="lang === 'id'">
+                    <div class="flex space-x-6 items-center">
+                        <a href="index.html" class="text-base font-medium text-gray-800 hover:text-lime-600">Beranda</a>
+                        <a href="tentangkami.html"
+                            class="text-base font-medium text-gray-800 hover:text-lime-600">Tentang Kami</a>
+                        <a href="layanankami.html"
+                            class="text-base font-medium text-lime-600 underline underline-offset-4">Layanan</a>
+                        <a href="gallery.html"
+                            class="text-base font-medium text-gray-800 hover:text-lime-600">Gallery</a>
+                    </div>
+                </template>
+                <template x-if="lang === 'en'">
+                    <div class="flex space-x-6 items-center">
+                        <a href="index.html" class="text-base font-medium text-gray-800 hover:text-lime-600">Home</a>
+                        <a href="tentangkami.html"
+                            class="text-base font-medium text-gray-800 hover:text-lime-600">About</a>
+                        <a href="layanankami.html"
+                            class="text-base font-medium text-lime-600 underline underline-offset-4">Services</a>
+                        <a href="gallery.html"
+                            class="text-base font-medium text-gray-800 hover:text-lime-600">Gallery</a>
+                    </div>
+                </template>
+                <div
+                    class="flex items-center border rounded-full px-3 py-1 text-base font-medium space-x-3 cursor-pointer select-none">
+                    <div class="flex items-center space-x-1" @click="lang = 'id'"
+                        :class="{ 'text-lime-600 font-bold': lang === 'id' }">
+                        <img src="icon/flagindo.svg" alt="ID" class="w-5 h-4">
+                        <span>IND</span>
+                    </div>
+                    <span class="text-gray-400">|</span>
+                    <div class="flex items-center space-x-1" @click="lang = 'en'"
+                        :class="{ 'text-lime-600 font-bold': lang === 'en' }">
+                        <img src="icon/flaging.svg" alt="EN" class="w-5 h-4">
+                        <span>ENG</span>
+                    </div>
+                </div>
+            </nav>
+            <div class="md:hidden">
+                <button @click="open = !open" class="text-gray-700 focus:outline-none">
+                    <svg x-show="!open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg x-show="open" x-cloak class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div x-show="open" x-cloak class="md:hidden px-4 pb-4 space-y-2">
+            <template x-if="lang === 'id'">
+                <div class="space-y-2">
+                    <a href="index.html"
+                        class="block text-base font-medium text-gray-800 hover:text-lime-600">Beranda</a>
+                    <a href="tentangkami.html"
+                        class="block text-base font-medium text-gray-800 hover:text-lime-600">Tentang Kami</a>
+                    <a href="index.html"
+                        class="block text-base font-medium text-gray-800 hover:text-lime-600">Layanan</a>
+                    <a href="gallery.html"
+                        class="block text-base font-medium text-gray-800 hover:text-lime-600">Gallery</a>
+                </div>
+            </template>
+            <template x-if="lang === 'en'">
+                <div class="space-y-2">
+                    <a href="index.html" class="block text-base font-medium text-gray-800 hover:text-lime-600">Home</a>
+                    <a href="tentangkami.html"
+                        class="block text-base font-medium text-gray-800 hover:text-lime-600">About</a>
+                    <a href="index.html"
+                        class="block text-base font-medium text-gray-800 hover:text-lime-600">Services</a>
+                    <a href="gallery.html"
+                        class="block text-base font-medium text-gray-800 hover:text-lime-600">Gallery</a>
+                </div>
+            </template>
+
+            <!-- Language Switcher Mobile -->
+            <div
+                class="flex items-center border rounded-full px-3 py-1 w-fit mt-2 text-base font-medium space-x-3 cursor-pointer select-none">
+                <div class="flex items-center space-x-1" @click="lang = 'id'"
+                    :class="{ 'text-lime-600 font-bold': lang === 'id' }">
+                    <img src="icon/flagindo.svg" alt="ID" class="w-5 h-4">
+                    <span>IND</span>
+                </div>
+                <span class="text-gray-400">|</span>
+                <div class="flex items-center space-x-1" @click="lang = 'en'"
+                    :class="{ 'text-lime-600 font-bold': lang === 'en' }">
+                    <img src="icon/flaging.svg" alt="EN" class="w-5 h-4">
+                    <span>ENG</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="bg-white py-20 px-4 mt-14" id="kelas-penyulingan">
+
+  <!-- Header Section -->
+  <div class="max-w-7xl mx-auto text-center mb-12" data-aos="fade-up">
+    <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4"
+        x-text="lang === 'id' ? 'Kelas Penyulingan' : 'Distillation Class'">
+      Kelas Penyulingan
+    </h2>
+    <p class="text-gray-600 max-w-4xl mx-auto text-base"
+       x-text="lang === 'id'
+         ? 'Kelas ini dirancang untuk belajar bagaimana mengekstrak berbagai bahan baku menjadi minyak atsiri murni melalui proses steam distillation (penyulingan uap). Dibimbing oleh trainer berpengalaman puluhan tahun, dengan jaminan “dibimbing sampai mahir”. Metode pembelajaran: 70% praktik dan 30% teori.'
+         : 'This class is designed to learn how to extract various raw materials into pure essential oil using the steam distillation process. Guided by highly experienced trainers with a “guided until expert” guarantee. Learning method: 70% practice and 30% theory.'">
+    </p>
+  </div>
+
+  <!-- Grid Cards Pelajar & Umum -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto mb-20">
+
+    <!-- Kelas Pelajar -->
+    <div class="bg-[#F9F9F9] rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition" data-aos="zoom-in">
+      <img src="img/banner.png" alt="Kelas Pelajar" class="w-full h-60 object-cover">
+      <div class="p-6 text-left">
+        <h3 class="text-xl font-bold text-gray-800 mb-3"
+            x-text="lang === 'id' ? 'Kelas Pelajar / Mahasiswa' : 'Student / University Class'"></h3>
+        <p class="text-gray-600 text-sm mb-4"
+           x-text="lang === 'id'
+             ? 'Ditujukan bagi siswa SMK/Sederajat atau mahasiswa yang ingin belajar penyulingan minyak atsiri. Setiap instansi maksimal 10 peserta dalam satu sesi workshop.'
+             : 'Designed for vocational/high school or university students interested in essential oil distillation. Max 10 participants per institution per workshop.'">
+        </p>
+        <ul class="text-sm text-gray-700 list-disc list-inside mb-3">
+          <li x-text="lang === 'id' ? 'Biaya: Rp 5.000.000 / instansi (10 peserta)' : 'Cost: Rp 5,000,000 / institution (10 participants)'"></li>
+          <li x-text="lang === 'id' ? 'Durasi: 1 hari penuh' : 'Duration: Full day'"></li>
+          <li x-text="lang === 'id' ? 'Fokus: Belajar praktik penyulingan langsung' : 'Focus: Hands-on distillation practice'"></li>
+        </ul>
+        <a :href="lang === 'id'
+                   ? 'https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20ingin%20mendaftar%20Kelas%20Pelajar%20Penyulingan'
+                   : 'https://wa.me/6281234567890?text=Hello%20Admin,%20I%20want%20to%20register%20for%20the%20Student%20Distillation%20Class'"
+           class="inline-block bg-[#AEB738] hover:bg-[#96a22f] text-white px-6 py-2 rounded-lg text-sm transition"
+           x-text="lang === 'id' ? 'Daftar via WhatsApp' : 'Register via WhatsApp'"></a>
+      </div>
+    </div>
+
+    <!-- Kelas Umum -->
+    <div class="bg-[#F9F9F9] rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition" data-aos="zoom-in" data-aos-delay="100">
+      <img src="img/banner.png" alt="Kelas Umum" class="w-full h-60 object-cover">
+      <div class="p-6 text-left">
+        <h3 class="text-xl font-bold text-gray-800 mb-3"
+            x-text="lang === 'id' ? 'Kelas Umum / Pengusaha' : 'Public / Entrepreneur Class'"></h3>
+        <p class="text-gray-600 text-sm mb-4"
+           x-text="lang === 'id'
+             ? 'Dikhususkan untuk calon pengusaha minyak atsiri. Peserta mendapatkan ilmu penyulingan + bonus partnership yaitu bisa menjual produk langsung ke perusahaan kami.'
+             : 'Designed for aspiring entrepreneurs. Participants gain distillation knowledge + partnership bonus to sell directly to our company.'">
+        </p>
+        <ul class="text-sm text-gray-700 list-disc list-inside mb-3">
+          <li x-text="lang === 'id' ? 'Biaya: Rp 5.000.000 / peserta' : 'Cost: Rp 5,000,000 / participant'"></li>
+          <li x-text="lang === 'id' ? 'Bonus: Partnership Produk + Bimbingan Risk Management' : 'Bonus: Product Partnership + Risk Management Mentoring'"></li>
+          <li x-text="lang === 'id' ? 'Garansi: Dibimbing sampai mahir & produk bisa dijual langsung' : 'Guarantee: Guided until expert & product can be sold directly'"></li>
+        </ul>
+        <a :href="lang === 'id'
+                   ? 'https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20ingin%20mendaftar%20Kelas%20Umum%20Penyulingan'
+                   : 'https://wa.me/6281234567890?text=Hello%20Admin,%20I%20want%20to%20register%20for%20the%20General%20Distillation%20Class'"
+           class="inline-block bg-[#AEB738] hover:bg-[#96a22f] text-white px-6 py-2 rounded-lg text-sm transition"
+           x-text="lang === 'id' ? 'Daftar via WhatsApp' : 'Register via WhatsApp'"></a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Daftar Varian Kelas Grid -->
+<div class="max-w-7xl mx-auto mt-16 px-4">
+  <div class="text-center mb-10">
+    <h3 class="text-3xl font-bold text-gray-800" 
+        x-text="lang === 'id' ? 'Varian Kelas Penyulingan Minyak Atsiri' : 'Essential Oil Distillation Class Variants'">
+      Varian Kelas Penyulingan Minyak Atsiri
+    </h3>
+    <p class="text-gray-500 mt-2 max-w-2xl mx-auto text-sm md:text-base"
+       x-text="lang === 'id' 
+         ? 'Berbagai varian kelas untuk belajar penyulingan minyak atsiri dari berbagai jenis bahan baku.' 
+         : 'Various class variants to learn essential oil distillation from different raw materials.'">
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+    
+    <!-- Kelas Card Template -->
+    <template x-for="(kelas, index) in [
+      {icon:'🌰', title_id:'Kelas penyulingan rumpun minyak Pala', title_en:'Clove Oil Distillation Class', desc_id:'Belajar penyulingan minyak pala secara praktik', desc_en:'Learn clove oil distillation hands-on'},
+      {icon:'🌿', title_id:'Kelas penyulingan rumpun minyak Cengkeh', title_en:'Nutmeg Oil Distillation Class', desc_id:'Belajar penyulingan minyak cengkeh', desc_en:'Learn nutmeg oil distillation'},
+      {icon:'🌱', title_id:'Kelas penyulingan minyak Nilam', title_en:'Patchouli Oil Distillation Class', desc_id:'Belajar penyulingan minyak nilam', desc_en:'Learn patchouli oil distillation'},
+      {icon:'🫚', title_id:'Kelas penyulingan minyak Jahe', title_en:'Ginger Oil Distillation Class', desc_id:'Belajar penyulingan minyak jahe', desc_en:'Learn ginger oil distillation'},
+      {icon:'🍊', title_id:'Kelas penyulingan minyak Jeruk', title_en:'Citrus Oil Distillation Class', desc_id:'Belajar penyulingan minyak jeruk', desc_en:'Learn citrus oil distillation'},
+      {icon:'🌸', title_id:'Kelas penyulingan minyak bunga Kenanga', title_en:'Ylang Ylang Oil Distillation Class', desc_id:'Belajar penyulingan minyak bunga kenanga', desc_en:'Learn ylang ylang oil distillation'},
+      {icon:'🍃', title_id:'Kelas penyulingan minyak Sereh Wangi', title_en:'Lemongrass Oil Distillation Class', desc_id:'Belajar penyulingan minyak sereh wangi', desc_en:'Learn lemongrass oil distillation'},
+      {icon:'💚', title_id:'Kelas penyulingan minyak Kapulaga', title_en:'Cardamom Oil Distillation Class', desc_id:'Belajar penyulingan minyak kapulaga', desc_en:'Learn cardamom oil distillation'},
+      {icon:'🌿', title_id:'Kelas penyulingan minyak Kayu Putih', title_en:'Eucalyptus Oil Distillation Class', desc_id:'Belajar penyulingan minyak kayu putih', desc_en:'Learn eucalyptus oil distillation'},
+      {icon:'✨', title_id:'… dan masih banyak lainnya', title_en:'… and many more', desc_id:'Varian kelas lainnya', desc_en:'Many other class variants'}
+    ]" :key="index">
+      <div class="bg-[#F9F9F9] rounded-2xl shadow-md p-8 text-center hover:shadow-lg hover:scale-105 transition transform duration-300" data-aos="fade-up" :data-aos-delay="100 + (index*50)">
+        <div class="text-5xl mb-4" x-text="kelas.icon"></div>
+        <h4 class="text-xl font-semibold mb-2" x-text="lang === 'id' ? kelas.title_id : kelas.title_en"></h4>
+        <p class="text-gray-600 text-sm" x-text="lang === 'id' ? kelas.desc_id : kelas.desc_en"></p>
+      </div>
+    </template>tisan serve
+
+  </div>
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+    <footer class="bg-white text-gray-800 px-4 sm:px-6 lg:px-20 pt-16 pb-10 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+
+            <!-- Logo & Alamat -->
+            <div>
+                <img src="logo/LOGO ATSIRI IN-7.png" alt="Logo" class="w-40 mb-4">
+                <p class="text-sm leading-relaxed text-gray-700">
+                    <span class="font-semibold text-black">
+                        <span x-show="lang === 'id'">Alamat:</span>
+                        <span x-show="lang === 'en'">Address:</span>
+                    </span><br>
+                    <span x-show="lang === 'id'">
+                        Jalan Cileungsing Kp. Krajan Desa Wanayasa Kec.
+                        Wanayasa Kab. Purwakarta
+                    </span>
+                    <span x-show="lang === 'en'">
+                        Jl. Cileungsing, Krajan Hamlet, Wanayasa Village,<br>
+                        Wanayasa Subdistrict, Purwakarta Regency
+                    </span>
+                </p>
+            </div>
+
+            <!-- Navigasi -->
+            <div>
+                <h4 class="text-xl font-semibold text-black mb-4">
+                    <span x-show="lang === 'id'">Navigasi</span>
+                    <span x-show="lang === 'en'">Navigation</span>
+                </h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-[#AEB738] transition">
+                            <span x-show="lang === 'id'">Beranda</span>
+                            <span x-show="lang === 'en'">Home</span>
+                        </a></li>
+                    <li><a href="#" class="hover:text-[#AEB738] transition">
+                            <span x-show="lang === 'id'">Tentang Kami</span>
+                            <span x-show="lang === 'en'">About Us</span>
+                        </a></li>
+                    <li><a href="#" class="hover:text-[#AEB738] transition">
+                            <span x-show="lang === 'id'">Layanan</span>
+                            <span x-show="lang === 'en'">Services</span>
+                        </a></li>
+
+                    <li><a href="#" class="hover:text-[#AEB738] transition">
+                            <span x-show="lang === 'id'">Kontak</span>
+                            <span x-show="lang === 'en'">Contact</span>
+                        </a></li>
+                </ul>
+            </div>
+
+            <!-- Kontak -->
+            <div>
+                <h4 class="text-xl font-semibold text-black mb-4">
+                    <span x-show="lang === 'id'">Kontak Kami</span>
+                    <span x-show="lang === 'en'">Contact Us</span>
+                </h4>
+                <ul class="space-y-2 text-sm text-gray-700">
+                    <li>📞 08222 3491149</li>
+                    <li>✉️ atsirian.company@gmail.com</li>
+                    <li>🌐 www.atsirian.com</li>
+                </ul>
+            </div>
+
+            <!-- Sosial Media -->
+            <div>
+                <h4 class="text-xl font-semibold text-black mb-4">
+                    <span x-show="lang === 'id'">Ikuti Kami</span>
+                    <span x-show="lang === 'en'">Follow Us</span>
+                </h4>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-600 hover:text-[#AEB738] transition">
+                        <img src="icon/instagram.svg" alt="instagram" class="w-6 h-auto">
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-[#AEB738] transition">
+                        <img src="icon/facebook.svg" alt="facebook" class="w-6 h-auto">
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-[#AEB738] transition">
+                        <img src="icon/tiktok.svg" alt="tiktok" class="w-6 h-auto">
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Garis dan Copyright -->
+        <div class="border-t border-gray-200 mt-10 pt-6 text-center text-sm text-gray-500">
+            &copy; 2025 <span class="text-[#AEB738] font-semibold">Atsiri Nusantara</span>.
+            <span x-show="lang === 'id'">All rights reserved.</span>
+            <span x-show="lang === 'en'">All rights reserved.</span>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: false,
+            mirror: true
+        });
+    </script>
+
+</body>
+
+</html>

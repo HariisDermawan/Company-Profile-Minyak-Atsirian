@@ -1,0 +1,15 @@
+ .clip-triangle-left {
+      clip-path: polygon(0 0, 70% 0, 55% 100%, 0% 100%);
+    }
+
+    @media (max-width: 1024px) {
+      .clip-triangle-left {
+        clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .clip-triangle-left {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+      }
+    }

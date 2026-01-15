@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="id" x-data="{ lang: 'id', open: false }">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Altsirian</title>
+  <link rel="stylesheet" href="css/mian.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+</head>
+<style>
+  [x-cloak] {
+    display: none !important;
+  }
+</style>
+
+<body x-data="{ lang: 'id' }">
+  <header class="fixed top-0 left-0 w-full bg-white shadow-md rounded-b-2xl z-50">
+    <div class="max-w-7xl mx-auto px-4 h-24 flex items-center justify-between">
+      <a href="#" class="flex items-center space-x-2">
+        <img src="logo/LOGO ATSIRI IN-7.png" alt="Logo" class="max-w-[200px] w-full h-auto object-contain" />
+      </a>
+      <nav class="hidden md:flex space-x-6 items-center">
+        <template x-if="lang === 'id'">
+          <div class="flex space-x-6 items-center">
+            <a href="index.html" class="text-base font-medium text-lime-600 underline underline-offset-4">Beranda</a>
+            <a href="tentangkami.html" class="text-base font-medium text-gray-800 hover:text-lime-600">Tentang Kami</a>
+            <a href="layanankami.html" class="text-base font-medium text-gray-800 hover:text-lime-600">Layanan</a>
+            <a href="gallery.html" class="text-base font-medium text-gray-800 hover:text-lime-600">Gallery</a>
+          </div>
+        </template>
+        <template x-if="lang === 'en'">
+          <div class="flex space-x-6 items-center">
+            <a href="index.html" class="text-base font-medium text-gray-800 hover:text-lime-600">Home</a>
+            <a href="tentangkami.html" class="text-base font-medium text-gray-800 hover:text-lime-600">About</a>
+            <a href="layanankami.html" class="text-base font-medium text-gray-800 hover:text-lime-600">Services</a>
+            <a href="gallery.html" class="text-base font-medium text-gray-800 hover:text-lime-600">Gallery</a>
+          </div>
+        </template>
+        <div
+          class="flex items-center border rounded-full px-3 py-1 text-base font-medium space-x-3 cursor-pointer select-none">
+          <div class="flex items-center space-x-1" @click="lang = 'id'"
+            :class="{ 'text-lime-600 font-bold': lang === 'id' }">
+            <img src="icon/flagindo.svg" alt="ID" class="w-5 h-4">
+            <span>IND</span>
+          </div>
+          <span class="text-gray-400">|</span>
+          <div class="flex items-center space-x-1" @click="lang = 'en'"
+            :class="{ 'text-lime-600 font-bold': lang === 'en' }">
+            <img src="icon/flaging.svg" alt="EN" class="w-5 h-4">
+            <span>ENG</span>
+          </div>
+        </div>
+      </nav>
+      <div class="md:hidden">
+        <button @click="open = !open" class="text-gray-700 focus:outline-none">
+          <svg x-show="!open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <svg x-show="open" x-cloak class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div x-show="open" x-cloak class="md:hidden px-4 pb-4 space-y-2">
+      <template x-if="lang === 'id'">
+        <div class="space-y-2">
+          <a href="index.html" class="block text-base font-medium text-gray-800 hover:text-lime-600">Beranda</a>
+          <a href="tentangkami.html" class="block text-base font-medium text-gray-800 hover:text-lime-600">Tentang
+            Kami</a>
+          <a href="layanankami.html" class="block text-base font-medium text-gray-800 hover:text-lime-600">Layanan</a>
+          <a href="gallery.html" class="block text-base font-medium text-gray-800 hover:text-lime-600">Gallery</a>
+        </div>
+      </template>
+      <template x-if="lang === 'en'">
+        <div class="space-y-2">
+          <a href="index.html" class="block text-base font-medium text-gray-800 hover:text-lime-600">Home</a>
+          <a href="tentangkami.html" class="block text-base font-medium text-gray-800 hover:text-lime-600">About</a>
+          <a href="layanankami.html" class="block text-base font-medium text-gray-800 hover:text-lime-600">Services</a>
+          <a href="gallery.html" class="block text-base font-medium text-gray-800 hover:text-lime-600">Gallery</a>
+        </div>
+      </template>
+
+      <div
+        class="flex items-center border rounded-full px-3 py-1 w-fit mt-2 text-base font-medium space-x-3 cursor-pointer select-none">
+        <div class="flex items-center space-x-1" @click="lang = 'id'"
+          :class="{ 'text-lime-600 font-bold': lang === 'id' }">
+          <img src="icon/flagindo.svg" alt="ID" class="w-5 h-4">
+          <span>IND</span>
+        </div>
+        <span class="text-gray-400">|</span>
+        <div class="flex items-center space-x-1" @click="lang = 'en'"
+          :class="{ 'text-lime-600 font-bold': lang === 'en' }">
+          <img src="icon/flaging.svg" alt="EN" class="w-5 h-4">
+          <span>ENG</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+
+  <section x-data="{
+    open: false,
+    images: ['img/banr.png', 'produk/1.png', 'produk/10.png'],
+    currentIndex: 0,
+    get background() {
+      const isMobile = window.innerWidth < 768;
+      const position = isMobile ? 'center' : '9% center';
+      return `background-image: url('${this.images[this.currentIndex]}'); background-position: ${position}; background-size: cover;`;
+    }
+  }" x-init="setInterval(() => currentIndex = (currentIndex + 1) % images.length, 5000)"
+    x-bind:class="{ 'mt-40': open }"
+    class="relative min-h-[90vh] bg-no-repeat px-4 sm:px-6 lg:px-8 flex items-center transition-all duration-300"
+    :style="background">
+    <!-- Overlay khusus desktop -->
+    <div class="hidden md:block absolute inset-0 z-10 -translate-x-[200px]">
+      <div class="w-full h-full bg-[#AEB738]/90 clip-triangle-left"></div>
+    </div>
+
+    <!-- Content -->
+    <div id="heroContent"
+      class="opacity-0 translate-y-10 transition-all duration-1000 ease-out relative z-20 max-w-7xl mx-auto w-full py-10 sm:py-14 md:py-20 pb-32 sm:pb-0">
+      <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-10">
+        <div class="text-white space-y-6 text-center md:text-left pt-20 md:pt-0">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
+            <span x-show="lang === 'id'">Minyak Atsiri Murni dari Alam Indonesia</span>
+            <span x-show="lang === 'en'">Pure Essential Oils from the Nature of Indonesia</span>
+          </h1>
+          <p class="text-lg text-white/90">
+            <span x-show="lang === 'id'">
+              Kami menyediakan berbagai jenis minyak atsiri murni seperti nilam, cengkeh, pala, dan lainnya. Diproses
+              dengan standar tinggi melalui penyulingan uap.
+            </span>
+            <span x-show="lang === 'en'">
+              We provide a variety of pure essential oils such as patchouli, clove, nutmeg, and more. Processed with
+              high standards through steam distillation.
+            </span>
+          </p>
+          <a href="#" target="_blank"
+            class="inline-block text-white font-semibold px-6 py-3 rounded-full border-4 border-white transition">
+            <span x-show="lang === 'id'">Hubungi Kami: 082223491149</span>
+            <span x-show="lang === 'en'">Contact Us: +62 822 2349 1149</span>
+          </a>
+        </div>
+        <div></div>
+      </div>
+    </div>
+
+    <!-- Feature Card -->
+    <div class="absolute left-1/2 -bottom-14 sm:-bottom-14 md:-bottom-16 transform -translate-x-1/2 z-30 w-full px-4">
+      <div class="bg-white shadow-xl rounded-2xl px-6 py-6 max-w-4xl mx-auto">
+        <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-black text-sm text-center">
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 flex items-center justify-center">
+              <img src="https://img.icons8.com/ios-filled/50/4CAF50/leaf.png" class="object-contain w-full h-full"
+                alt="">
+            </div>
+            <span class="mt-2 font-semibold">
+              <span x-show="lang === 'id'">Tanaman Herbal</span>
+              <span x-show="lang === 'en'">Herbal Plants</span>
+            </span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 flex items-center justify-center">
+              <img src="img/botle.png" class="object-contain w-full h-full" alt="">
+            </div>
+            <span class="mt-2 font-semibold">
+              <span x-show="lang === 'id'">Minyak Murni</span>
+              <span x-show="lang === 'en'">Pure Oil</span>
+            </span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 flex items-center justify-center">
+              <img src="img/hand.png" class="object-contain w-full h-full" alt="">
+            </div>
+            <span class="mt-2 font-semibold">
+              <span x-show="lang === 'id'">100% Alami</span>
+              <span x-show="lang === 'en'">100% Natural</span>
+            </span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 flex items-center justify-center">
+              <img src="https://img.icons8.com/ios-filled/50/4CAF50/lab-items.png" class="object-contain w-full h-full"
+                alt="">
+            </div>
+            <span class="mt-2 font-semibold">
+              <span x-show="lang === 'id'">Distilasi Uap</span>
+              <span x-show="lang === 'en'">Steam Distillation</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WhatsApp -->
+    <a href="javascript:void(0)"
+      class="fixed bottom-5 right-5 bg-green-500 p-3 rounded-full shadow-lg z-50 hover:scale-110 transition"
+      aria-label="WhatsApp Icon">
+      <img src="https://img.icons8.com/ios-filled/24/ffffff/whatsapp--v1.png" alt="WhatsApp" class="w-6 h-6" />
+    </a>
+
+  </section>
+
+
+  <section class="bg-white py-20 px-4 mt-24 sm:px-8 lg:px-20" id="packaging">
+    <div class="max-w-7xl mx-auto">
+      <!-- Judul -->
+      <div id="packagingTitle"
+        class="text-center mb-16 opacity-0 translate-y-10 transition-all duration-700 ease-in-out">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          <span x-show="lang === 'id'">KEMASAN PRODUK</span>
+          <span x-show="lang === 'en'">PRODUCT PACKAGING</span>
+        </h2>
+        <p class="text-gray-600 max-w-2xl mx-auto text-base leading-relaxed" x-text="lang === 'id'
+           ? 'Desain kemasan kami memancarkan kesan alami, elegan, dan mencerminkan kualitas minyak atsiri Indonesia.'
+           : 'Our packaging exudes natural elegance, reflecting the premium quality of Indonesian essential oils.'">
+        </p>
+      </div>
+
+      <!-- Konten Utama -->
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <!-- Gambar Produk -->
+        <div id="packagingImage"
+          class="relative opacity-0 translate-y-10 transition-all duration-700 ease-in-out delay-100">
+          <img src="produk/1.png" alt="Essential Oil Bottle"
+            class="rounded-2xl shadow-xl w-full object-cover h-[400px] md:h-[500px]">
+
+          <!-- Badge Floating -->
+          <div
+            class="absolute -bottom-6 left-6 bg-[#AEB738] text-white px-6 py-3 rounded-xl shadow-lg flex items-center space-x-4">
+            <div class="text-3xl font-bold">20+</div>
+            <div class="text-sm leading-tight">
+              <span class="block font-medium"
+                x-text="lang === 'id' ? 'Varian Minyak Atsiri' : 'Essential Oil Variants'"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Informasi Deskriptif -->
+        <div id="packagingDesc"
+          class="space-y-4 text-gray-700 text-sm sm:text-base opacity-0 translate-y-10 transition-all duration-700 ease-in-out delay-200">
+          <h3 class="text-2xl font-bold text-gray-900">Atsirian</h3>
+          <p class="italic text-[#AEB738] font-medium">
+            <span x-show="lang === 'id'">Kami tidak hanya memberi Anda minyak, kami memberi Anda alam!</span>
+            <span x-show="lang === 'en'">We don’t give you the oils, we give you the nature!</span>
+          </p>
+
+          <div class="grid sm:grid-cols-2 gap-4 mt-4">
+            <div>
+              <p class="font-semibold" x-text="lang === 'id' ? 'Ukuran Kemasan' : 'Package Size'"></p>
+              <p>15ml & 20ml</p>
+            </div>
+            <div>
+              <p class="font-semibold" x-text="lang === 'id' ? 'Berat Bersih' : 'Net Weight'"></p>
+              <p>15ml / 20ml</p>
+            </div>
+            <div>
+              <p class="font-semibold">NIB</p>
+              <p>1103250107434</p>
+            </div>
+            <div>
+              <p class="font-semibold" x-text="lang === 'id' ? 'Alamat Produksi' : 'Production Address'"></p>
+              <p>Purwakarta - Indonesia</p>
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <p class="font-semibold text-gray-800 mb-2" x-text="lang === 'id' ? 'Media Sosial' : 'Social Media'"></p>
+            <ul class="space-y-1">
+              <li><a href="#" class="hover:text-[#AEB738]">Instagram: @atsirian.id</a></li>
+              <li><a href="#" class="hover:text-[#AEB738]">TikTok: @atsirian.id</a></li>
+              <li><a href="#" class="hover:text-[#AEB738]">Facebook: Atsirian id</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-12 px-4">
+    <div class="max-w-7xl mx-auto" x-data="{ showDetail: {} }">
+
+      <!-- Carousel -->
+      <div class="relative overflow-visible pb-6">
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+
+            <!-- CARD 1: Minyak Pala -->
+            <div class="swiper-slide overflow-visible pb-6" x-data="{ id: 1 }">
+              <div class="bg-white shadow-lg rounded-xl mx-1">
+                <div class="relative">
+                  <img src="produk/1.png" class="w-full max-h-52 object-contain mx-auto" />
+                </div>
+                <div class="p-4 text-center">
+                  <p class="text-sm font-semibold"
+                    x-text="lang === 'id' ? 'Minyak Pala (Myristica Fragrans)' : 'Nutmeg Oil (Myristica Fragrans)'"></p>
+                  <button class="mt-2 text-xs text-[#AEB738] hover:underline" @click="showDetail[id] = !showDetail[id]"
+                    x-text="lang === 'id' ? (showDetail[id] ? 'Tutup Detail' : 'Lihat Detail') : (showDetail[id] ? 'Close Details' : 'View Details')"></button>
+                  <p class="text-xs text-gray-600 mt-2" x-show="showDetail[id]" x-transition>
+                    <span x-show="lang === 'id'">Minyak atsiri murni dari pala melalui penyulingan uap. Cocok untuk
+                      aromaterapi, herbal, dan parfum.</span>
+                    <span x-show="lang === 'en'">Pure nutmeg essential oil from steam distillation. Suitable for
+                      aromatherapy, herbal remedies, and perfumes.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- CARD 2: Minyak Cengkeh -->
+            <div class="swiper-slide overflow-visible pb-6" x-data="{ id: 2 }">
+              <div class="bg-white shadow-lg rounded-xl mx-1">
+                <div class="relative">
+                  <img src="produk/2.png" class="w-full max-h-52 object-contain mx-auto" />
+                </div>
+                <div class="p-4 text-center">
+                  <p class="text-sm font-semibold"
+                    x-text="lang === 'id' ? 'Minyak Cengkeh (Syzygium Aromaticum)' : 'Clove Oil (Syzygium Aromaticum)'">
+                  </p>
+                  <button class="mt-2 text-xs text-[#AEB738] hover:underline" @click="showDetail[id] = !showDetail[id]"
+                    x-text="lang === 'id' ? (showDetail[id] ? 'Tutup Detail' : 'Lihat Detail') : (showDetail[id] ? 'Close Details' : 'View Details')"></button>
+                  <p class="text-xs text-gray-600 mt-2" x-show="showDetail[id]" x-transition>
+                    <span x-show="lang === 'id'">Diekstrak dari bunga cengkeh pilihan. Digunakan untuk kesehatan gigi,
+                      relaksasi, dan aroma terapi.</span>
+                    <span x-show="lang === 'en'">Extracted from selected clove buds. Used for dental health, relaxation,
+                      and aromatherapy.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- CARD 3: Minyak Nilam -->
+            <div class="swiper-slide overflow-visible pb-6" x-data="{ id: 3 }">
+              <div class="bg-white shadow-lg rounded-xl mx-1">
+                <div class="relative">
+                  <img src="produk/3.png" class="w-full max-h-52 object-contain mx-auto" />
+                </div>
+                <div class="p-4 text-center">
+                  <p class="text-sm font-semibold"
+                    x-text="lang === 'id' ? 'Minyak Nilam (Pogostemon Cablin)' : 'Patchouli Oil (Pogostemon Cablin)'">
+                  </p>
+                  <button class="mt-2 text-xs text-[#AEB738] hover:underline" @click="showDetail[id] = !showDetail[id]"
+                    x-text="lang === 'id' ? (showDetail[id] ? 'Tutup Detail' : 'Lihat Detail') : (showDetail[id] ? 'Close Details' : 'View Details')"></button>
+                  <p class="text-xs text-gray-600 mt-2" x-show="showDetail[id]" x-transition>
+                    <span x-show="lang === 'id'">Minyak nilam beraroma kuat dan tahan lama, banyak digunakan dalam
+                      parfum dan pengobatan kulit.</span>
+                    <span x-show="lang === 'en'">Strong, long-lasting patchouli oil, commonly used in perfumes and skin
+                      treatments.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- CARD 4: Minyak Kenanga -->
+            <div class="swiper-slide overflow-visible pb-6" x-data="{ id: 4 }">
+              <div class="bg-white shadow-lg rounded-xl mx-1">
+                <div class="relative">
+                  <img src="produk/4.png" class="w-full max-h-52 object-contain mx-auto" />
+                </div>
+                <div class="p-4 text-center">
+                  <p class="text-sm font-semibold"
+                    x-text="lang === 'id' ? 'Minyak Kenanga (Cananga Odorata)' : 'Ylang-Ylang Oil (Cananga Odorata)'">
+                  </p>
+                  <button class="mt-2 text-xs text-[#AEB738] hover:underline" @click="showDetail[id] = !showDetail[id]"
+                    x-text="lang === 'id' ? (showDetail[id] ? 'Tutup Detail' : 'Lihat Detail') : (showDetail[id] ? 'Close Details' : 'View Details')"></button>
+                  <p class="text-xs text-gray-600 mt-2" x-show="showDetail[id]" x-transition>
+                    <span x-show="lang === 'id'">Aroma kenanga menenangkan dan digunakan dalam spa serta produk
+                      perawatan kulit alami.</span>
+                    <span x-show="lang === 'en'">Ylang-ylang’s calming scent is widely used in spas and natural skincare
+                      products.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide overflow-visible pb-6" x-data="{ id: 4 }">
+              <div class="bg-white shadow-lg rounded-xl mx-1">
+                <div class="relative">
+                  <img src="produk/4.png" class="w-full max-h-52 object-contain mx-auto" />
+                </div>
+                <div class="p-4 text-center">
+                  <p class="text-sm font-semibold"
+                    x-text="lang === 'id' ? 'Minyak Kenanga (Cananga Odorata)' : 'Ylang-Ylang Oil (Cananga Odorata)'">
+                  </p>
+                  <button class="mt-2 text-xs text-[#AEB738] hover:underline" @click="showDetail[id] = !showDetail[id]"
+                    x-text="lang === 'id' ? (showDetail[id] ? 'Tutup Detail' : 'Lihat Detail') : (showDetail[id] ? 'Close Details' : 'View Details')"></button>
+                  <p class="text-xs text-gray-600 mt-2" x-show="showDetail[id]" x-transition>
+                    <span x-show="lang === 'id'">Aroma kenanga menenangkan dan digunakan dalam spa serta produk
+                      perawatan kulit alami.</span>
+                    <span x-show="lang === 'en'">Ylang-ylang’s calming scent is widely used in spas and natural skincare
+                      products.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide overflow-visible pb-6" x-data="{ id: 4 }">
+              <div class="bg-white shadow-lg rounded-xl mx-1">
+                <div class="relative">
+                  <img src="produk/4.png" class="w-full max-h-52 object-contain mx-auto" />
+                </div>
+                <div class="p-4 text-center">
+                  <p class="text-sm font-semibold"
+                    x-text="lang === 'id' ? 'Minyak Kenanga (Cananga Odorata)' : 'Ylang-Ylang Oil (Cananga Odorata)'">
+                  </p>
+                  <button class="mt-2 text-xs text-[#AEB738] hover:underline" @click="showDetail[id] = !showDetail[id]"
+                    x-text="lang === 'id' ? (showDetail[id] ? 'Tutup Detail' : 'Lihat Detail') : (showDetail[id] ? 'Close Details' : 'View Details')"></button>
+                  <p class="text-xs text-gray-600 mt-2" x-show="showDetail[id]" x-transition>
+                    <span x-show="lang === 'id'">Aroma kenanga menenangkan dan digunakan dalam spa serta produk
+                      perawatan kulit alami.</span>
+                    <span x-show="lang === 'en'">Ylang-ylang’s calming scent is widely used in spas and natural skincare
+                      products.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Navigasi -->
+          <div class="swiper-button-prev !w-6 !h-6 !text-[#AEB738] !left-[-32px] !top-1/2 !-translate-y-1/2"></div>
+          <div class="swiper-button-next !w-6 !h-6 !text-[#AEB738] !right-[-32px] !top-1/2 !-translate-y-1/2"></div>
+        </div>
+      </div>
+
+      <!-- Produk Tambahan -->
+      <div id="more-products" class="mt-2 hidden" x-data="{ showDetailMore: {} }">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+
+          <!-- Card 5 -->
+          <div class="bg-white shadow-lg rounded-xl mx-1" x-data="{ id: 5 }">
+            <div class="relative">
+              <img src="produk/5.png" class="w-full max-h-52 object-contain mx-auto" />
+            </div>
+            <div class="p-4 text-center">
+              <p class="text-sm font-semibold"
+                x-text="lang === 'id' ? 'Minyak Serai (Cymbopogon Citratus)' : 'Lemongrass Oil (Cymbopogon Citratus)'">
+              </p>
+              <button class="mt-2 text-xs text-[#AEB738] hover:underline"
+                @click="showDetailMore[id] = !showDetailMore[id]"
+                x-text="lang === 'id' ? (showDetailMore[id] ? 'Tutup Detail' : 'Lihat Detail') : (showDetailMore[id] ? 'Close Details' : 'View Details')"></button>
+              <p class="text-xs text-gray-600 mt-2" x-show="showDetailMore[id]" x-transition>
+                <span x-show="lang === 'id'">Minyak serai segar dengan aroma citrus, cocok untuk pengusir serangga dan
+                  relaksasi.</span>
+                <span x-show="lang === 'en'">Fresh lemongrass oil with citrus scent, ideal for insect repellent and
+                  relaxation.</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="bg-white shadow-lg rounded-xl mx-1" x-data="{ id: 6 }">
+            <div class="relative">
+              <img src="produk/6.png" class="w-full max-h-52 object-contain mx-auto" />
+            </div>
+            <div class="p-4 text-center">
+              <p class="text-sm font-semibold"
+                x-text="lang === 'id' ? 'Minyak Cendana (Santalum Album)' : 'Sandalwood Oil (Santalum Album)'"></p>
+              <button class="mt-2 text-xs text-[#AEB738] hover:underline"
+                @click="showDetailMore[id] = !showDetailMore[id]"
+                x-text="lang === 'id' ? (showDetailMore[id] ? 'Tutup Detail' : 'Lihat Detail') : (showDetailMore[id] ? 'Close Details' : 'View Details')"></button>
+              <p class="text-xs text-gray-600 mt-2" x-show="showDetailMore[id]" x-transition>
+                <span x-show="lang === 'id'">Minyak cendana premium untuk parfum dan pengobatan tradisional, harum tahan
+                  lama.</span>
+                <span x-show="lang === 'en'">Premium sandalwood oil for perfumery and traditional medicine, long-lasting
+                  scent.</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 7 -->
+          <div class="bg-white shadow-lg rounded-xl mx-1" x-data="{ id: 7 }">
+            <div class="relative">
+              <img src="produk/7.png" class="w-full max-h-52 object-contain mx-auto" />
+            </div>
+            <div class="p-4 text-center">
+              <p class="text-sm font-semibold"
+                x-text="lang === 'id' ? 'Minyak Jahe (Zingiber Officinale)' : 'Ginger Oil (Zingiber Officinale)'"></p>
+              <button class="mt-2 text-xs text-[#AEB738] hover:underline"
+                @click="showDetailMore[id] = !showDetailMore[id]"
+                x-text="lang === 'id' ? (showDetailMore[id] ? 'Tutup Detail' : 'Lihat Detail') : (showDetailMore[id] ? 'Close Details' : 'View Details')"></button>
+              <p class="text-xs text-gray-600 mt-2" x-show="showDetailMore[id]" x-transition>
+                <span x-show="lang === 'id'">Minyak jahe untuk menghangatkan tubuh, meningkatkan sirkulasi dan meredakan
+                  nyeri.</span>
+                <span x-show="lang === 'en'">Ginger oil for warming the body, boosting circulation, and relieving
+                  pain.</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 8 -->
+          <div class="bg-white shadow-lg rounded-xl mx-1" x-data="{ id: 8 }">
+            <div class="relative">
+              <img src="produk/8.png" class="w-full max-h-52 object-contain mx-auto" />
+            </div>
+            <div class="p-4 text-center">
+              <p class="text-sm font-semibold"
+                x-text="lang === 'id' ? 'Minyak Kayu Putih (Melaleuca Cajuputi)' : 'Cajuput Oil (Melaleuca Cajuputi)'">
+              </p>
+              <button class="mt-2 text-xs text-[#AEB738] hover:underline"
+                @click="showDetailMore[id] = !showDetailMore[id]"
+                x-text="lang === 'id' ? (showDetailMore[id] ? 'Tutup Detail' : 'Lihat Detail') : (showDetailMore[id] ? 'Close Details' : 'View Details')"></button>
+              <p class="text-xs text-gray-600 mt-2" x-show="showDetailMore[id]" x-transition>
+                <span x-show="lang === 'id'">Digunakan untuk mengatasi masuk angin dan nyeri otot. Aroma segar dan
+                  menenangkan.</span>
+                <span x-show="lang === 'en'">Used for colds and muscle aches. Fresh and calming scent.</span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Tombol Selanjutnya -->
+      <div class="text-center mt-6">
+        <button id="toggle-button"
+          class="text-sm font-medium text-white bg-[#AEB738] hover:bg-[#96a22f] px-6 py-2 rounded-lg transition"
+          @click="document.getElementById('more-products').classList.toggle('hidden')"
+          x-text="lang === 'id' ? 'Lihat Selanjutnya' : 'See More'">
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <section class="bg-white mt-24 py-20 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto text-center">
+      <!-- Judul -->
+      <h2 id="approachTitle"
+        class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4 opacity-0 translate-y-10 transition-all duration-700 ease-in-out">
+        <span x-show="lang === 'id'">Kenapa Memilih Kami</span>
+        <span x-show="lang === 'en'">Why Choose Us</span>
+      </h2>
+
+      <!-- Deskripsi -->
+      <p id="approachDesc"
+        class="text-gray-600 max-w-2xl mx-auto mb-16 text-base leading-relaxed opacity-0 translate-y-10 transition-all duration-700 ease-in-out delay-100">
+        <span x-show="lang === 'id'">
+          Kami adalah supplier minyak atsiri murni dengan komitmen terhadap kualitas dan keberlanjutan. Dengan sumber
+          daya alam Indonesia yang melimpah, kami hadir untuk membawa manfaat alam bagi kesehatan dan kesejahteraan.
+        </span>
+        <span x-show="lang === 'en'">
+          We are a pure essential oil supplier committed to quality and sustainability. With Indonesia’s abundant
+          natural resources, we bring nature's benefits to support health and well-being.
+        </span>
+      </p>
+
+      <!-- Konten Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+
+        <!-- Kolom Kiri -->
+        <div id="leftColumn"
+          class="space-y-6 md:space-y-10 text-left opacity-0 translate-y-10 transition-all duration-700 ease-in-out delay-200">
+          <div class="bg-[#AEB738] text-gray-900 p-5 rounded-xl shadow-lg">
+            <h4 class="text-lg font-bold mb-1"
+              x-text="lang === 'id' ? 'Kekayaan Alam Indonesia' : 'Indonesia’s Natural Wealth'"></h4>
+            <p class="text-sm"
+              x-text="lang === 'id'
+            ? 'Alam Indonesia kaya akan sumber daya yang bermanfaat, termasuk minyak atsiri yang kami olah secara optimal.'
+            : 'Indonesia is rich in natural resources, including essential oils that we process with care and precision.'">
+            </p>
+          </div>
+          <div class="bg-[#AEB738] text-gray-900 p-5 rounded-xl shadow-lg">
+            <h4 class="text-lg font-bold mb-1"
+              x-text="lang === 'id' ? '20 Varian Minyak Atsiri' : '20 Essential Oil Variants'"></h4>
+            <p class="text-sm" x-text="lang === 'id'
+            ? 'Kami menyediakan sekitar 20 varian minyak atsiri murni seperti pala, cengkeh, nilam, dan kenanga.'
+            : 'We offer around 20 pure essential oil variants including nutmeg, clove, patchouli, and ylang-ylang.'">
+            </p>
+          </div>
+        </div>
+
+        <!-- Gambar Tengah -->
+        <div id="imageCenter"
+          class="flex justify-center items-center opacity-0 translate-y-10 transition-all duration-700 ease-in-out delay-300">
+          <div class="relative w-full max-w-sm sm:max-w-md lg:max-w-lg h-auto rounded-xl shadow-md overflow-hidden">
+            <img src="img/LABEL KEMASAN ATSIRI-9X10.png" alt="Label Kemasan Atsiri"
+              class="w-full h-auto object-contain" />
+          </div>
+        </div>
+
+        <!-- Kolom Kanan -->
+        <div id="rightColumn"
+          class="space-y-6 md:space-y-10 text-left opacity-0 translate-y-10 transition-all duration-700 ease-in-out delay-400">
+          <div class="bg-[#AEB738] text-gray-900 p-5 rounded-xl shadow-lg">
+            <h4 class="text-lg font-bold mb-1" x-text="lang === 'id' ? 'Penyulingan Uap' : 'Steam Distillation'"></h4>
+            <p class="text-sm" x-text="lang === 'id'
+            ? 'Minyak kami dihasilkan dari proses penyulingan uap untuk menjaga kemurnian dan kualitas.'
+            : 'Our oils are produced using steam distillation to ensure purity and high quality.'">
+            </p>
+          </div>
+          <div class="bg-[#AEB738] text-gray-900 p-5 rounded-xl shadow-lg">
+            <h4 class="text-lg font-bold mb-1"
+              x-text="lang === 'id' ? 'Kelas Penyulingan Terbuka' : 'Open Distillation Classes'"></h4>
+            <p class="text-sm" x-text="lang === 'id'
+            ? 'Kami menyediakan kelas penyulingan bagi pelajar, mahasiswa, hingga pengusaha umum.'
+            : 'We offer distillation classes for students, university learners, and entrepreneurs alike.'">
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-20 px-4" id="kelas-penyulingan">
+    <div class="max-w-7xl mx-auto text-center mb-12" data-aos="fade-up">
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4"
+        x-text="lang === 'id' ? 'Kelas Penyulingan' : 'Distillation Class'">
+        Kelas Penyulingan
+      </h2>
+      <p class="text-gray-600 max-w-4xl mx-auto text-base"
+        x-text="lang === 'id' 
+         ? 'Kelas ini dirancang untuk belajar bagaimana mengekstrak berbagai bahan baku menjadi minyak atsiri murni melalui proses steam distillation (penyulingan uap). Dibimbing oleh trainer berpengalaman puluhan tahun, dengan jaminan “dibimbing sampai mahir”. Metode pembelajaran: 70% praktik dan 30% teori.' 
+         : 'This class is designed to learn how to extract various raw materials into pure essential oil using the steam distillation process. Guided by highly experienced trainers with a “guided until expert” guarantee. Learning method: 70% practice and 30% theory.'">
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto mb-20">
+      <!-- Kelas Pelajar -->
+      <div class="bg-[#F9F9F9] rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition" data-aos="zoom-in">
+        <img src="img/banner.png" alt="Kelas Pelajar" class="w-full h-60 object-cover">
+        <div class="p-6 text-left">
+          <h3 class="text-xl font-bold text-gray-800 mb-3"
+            x-text="lang === 'id' ? 'Kelas Pelajar / Mahasiswa' : 'Student / University Class'">
+          </h3>
+          <p class="text-gray-600 text-sm mb-4"
+            x-text="lang === 'id' 
+             ? 'Ditujukan bagi siswa SMK/Sederajat atau mahasiswa yang ingin belajar penyulingan minyak atsiri. Setiap instansi maksimal 10 peserta dalam satu sesi workshop.' 
+             : 'Designed for vocational/high school or university students interested in essential oil distillation. Max 10 participants per institution per workshop.'">
+          </p>
+          <ul class="text-sm text-gray-700 list-disc list-inside mb-3">
+            <li
+              x-text="lang === 'id' ? 'Biaya: Rp 5.000.000 / instansi (10 peserta)' : 'Cost: Rp 5,000,000 / institution (10 participants)'">
+            </li>
+            <li x-text="lang === 'id' ? 'Durasi: 1 hari penuh' : 'Duration: Full day'"></li>
+            <li
+              x-text="lang === 'id' ? 'Fokus: Belajar praktik penyulingan langsung' : 'Focus: Hands-on distillation practice'">
+            </li>
+          </ul>
+          <a :href="lang === 'id' 
+                   ? 'https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20ingin%20mendaftar%20Kelas%20Pelajar%20Penyulingan' 
+                   : 'https://wa.me/6281234567890?text=Hello%20Admin,%20I%20want%20to%20register%20for%20the%20Student%20Distillation%20Class'"
+            class="inline-block bg-[#AEB738] hover:bg-[#96a22f] text-white px-6 py-2 rounded-lg text-sm transition"
+            x-text="lang === 'id' ? 'Daftar via WhatsApp' : 'Register via WhatsApp'">
+          </a>
+        </div>
+      </div>
+
+      <!-- Kelas Umum -->
+      <div class="bg-[#F9F9F9] rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition" data-aos="zoom-in"
+        data-aos-delay="100">
+        <img src="img/banner.png" alt="Kelas Umum" class="w-full h-60 object-cover">
+        <div class="p-6 text-left">
+          <h3 class="text-xl font-bold text-gray-800 mb-3"
+            x-text="lang === 'id' ? 'Kelas Umum / Pengusaha' : 'Public / Entrepreneur Class'">
+          </h3>
+          <p class="text-gray-600 text-sm mb-4"
+            x-text="lang === 'id' 
+             ? 'Dikhususkan untuk calon pengusaha minyak atsiri. Peserta mendapatkan ilmu penyulingan + bonus partnership yaitu bisa menjual produk langsung ke perusahaan kami.' 
+             : 'Designed for aspiring entrepreneurs. Participants gain distillation knowledge + partnership bonus to sell directly to our company.'">
+          </p>
+          <ul class="text-sm text-gray-700 list-disc list-inside mb-3">
+            <li x-text="lang === 'id' ? 'Biaya: Rp 5.000.000 / peserta' : 'Cost: Rp 5,000,000 / participant'"></li>
+            <li
+              x-text="lang === 'id' ? 'Bonus: Partnership Produk + Bimbingan Risk Management' : 'Bonus: Product Partnership + Risk Management Mentoring'">
+            </li>
+            <li
+              x-text="lang === 'id' ? 'Garansi: Dibimbing sampai mahir & produk bisa dijual langsung' : 'Guarantee: Guided until expert & product can be sold directly'">
+            </li>
+          </ul>
+          <a :href="lang === 'id' 
+                   ? 'https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20ingin%20mendaftar%20Kelas%20Umum%20Penyulingan' 
+                   : 'https://wa.me/6281234567890?text=Hello%20Admin,%20I%20want%20to%20register%20for%20the%20General%20Distillation%20Class'"
+            class="inline-block bg-[#AEB738] hover:bg-[#96a22f] text-white px-6 py-2 rounded-lg text-sm transition"
+            x-text="lang === 'id' ? 'Daftar via WhatsApp' : 'Register via WhatsApp'">
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <footer class="bg-white text-gray-800 px-4 sm:px-6 lg:px-20 pt-16 pb-10 border-t border-gray-200">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+
+      <!-- Logo & Alamat -->
+      <div>
+        <img src="logo/LOGO ATSIRI IN-7.png" alt="Logo" class="w-40 mb-4">
+        <p class="text-sm leading-relaxed text-gray-700">
+          <span class="font-semibold text-black">
+            <span x-show="lang === 'id'">Alamat:</span>
+            <span x-show="lang === 'en'">Address:</span>
+          </span><br>
+          <span x-show="lang === 'id'">
+            Jalan Cileungsing Kp. Krajan Desa Wanayasa Kec.
+            Wanayasa Kab. Purwakarta
+          </span>
+          <span x-show="lang === 'en'">
+            Jl. Cileungsing, Krajan Hamlet, Wanayasa Village,<br>
+            Wanayasa Subdistrict, Purwakarta Regency
+          </span>
+        </p>
+      </div>
+
+      <!-- Navigasi -->
+      <div>
+        <h4 class="text-xl font-semibold text-black mb-4">
+          <span x-show="lang === 'id'">Navigasi</span>
+          <span x-show="lang === 'en'">Navigation</span>
+        </h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:text-[#AEB738] transition">
+              <span x-show="lang === 'id'">Beranda</span>
+              <span x-show="lang === 'en'">Home</span>
+            </a></li>
+          <li><a href="#" class="hover:text-[#AEB738] transition">
+              <span x-show="lang === 'id'">Tentang Kami</span>
+              <span x-show="lang === 'en'">About Us</span>
+            </a></li>
+          <li><a href="#" class="hover:text-[#AEB738] transition">
+              <span x-show="lang === 'id'">Layanan</span>
+              <span x-show="lang === 'en'">Services</span>
+            </a></li>
+
+          <li><a href="#" class="hover:text-[#AEB738] transition">
+              <span x-show="lang === 'id'">Kontak</span>
+              <span x-show="lang === 'en'">Contact</span>
+            </a></li>
+        </ul>
+      </div>
+
+      <!-- Kontak -->
+      <div>
+        <h4 class="text-xl font-semibold text-black mb-4">
+          <span x-show="lang === 'id'">Kontak Kami</span>
+          <span x-show="lang === 'en'">Contact Us</span>
+        </h4>
+        <ul class="space-y-2 text-sm text-gray-700">
+          <li>📞 08222 3491149</li>
+          <li>✉️ atsirian.company@gmail.com</li>
+          <li>🌐 www.atsirian.com</li>
+        </ul>
+      </div>
+
+      <!-- Sosial Media -->
+      <div>
+        <h4 class="text-xl font-semibold text-black mb-4">
+          <span x-show="lang === 'id'">Ikuti Kami</span>
+          <span x-show="lang === 'en'">Follow Us</span>
+        </h4>
+        <div class="flex space-x-4">
+          <a href="#" class="text-gray-600 hover:text-[#AEB738] transition">
+            <img src="icon/instagram.svg" alt="instagram" class="w-6 h-auto">
+          </a>
+          <a href="#" class="text-gray-600 hover:text-[#AEB738] transition">
+            <img src="icon/facebook.svg" alt="facebook" class="w-6 h-auto">
+          </a>
+          <a href="#" class="text-gray-600 hover:text-[#AEB738] transition">
+            <img src="icon/tiktok.svg" alt="tiktok" class="w-6 h-auto">
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Garis dan Copyright -->
+    <div class="border-t border-gray-200 mt-10 pt-6 text-center text-sm text-gray-500">
+      &copy; 2025 <span class="text-[#AEB738] font-semibold">Atsiri Nusantara</span>.
+      <span x-show="lang === 'id'">All rights reserved.</span>
+      <span x-show="lang === 'en'">All rights reserved.</span>
+    </div>
+  </footer>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="js/main.js"></script>
+
+</html>

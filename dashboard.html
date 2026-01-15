@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+
+  <!-- NAVBAR -->
+  <header
+    class="fixed top-0 left-0 w-full bg-white shadow-md rounded-b-2xl h-20 px-6 md:px-8 flex justify-between items-center z-50">
+    <div class="flex items-center gap-4">
+      <button id="toggleSidebar" class="md:hidden focus:outline-none">
+        <svg id="iconHamburger" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-800" fill="none"
+          viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="iconClose" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-800 hidden" fill="none"
+          viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      <div class="text-xl font-bold">Logo</div>
+    </div>
+    <div class="text-sm font-semibold">Admin</div>
+  </header>
+
+  <!-- SIDEBAR -->
+  <aside id="sidebar"
+    class="fixed top-20 left-0 w-60 h-[calc(100vh-5rem)] bg-white px-6 py-10 flex flex-col items-start transition-transform duration-300 transform -translate-x-full md:translate-x-0 md:block z-40 shadow-md">
+    <div class="w-24 h-24 bg-gray-300 rounded-full mx-auto mb-10"></div>
+    <nav class="flex flex-col space-y-4 w-full text-sm font-medium">
+      <a href="#" class="px-3 py-2 rounded-lg hover:bg-gray-100 hover:text-[#F38D22] transition">Dashboard</a>
+      <a href="#" class="px-3 py-2 rounded-lg hover:bg-gray-100 hover:text-[#F38D22] transition">Gallery</a>
+      <a href="#" class="px-3 py-2 rounded-lg hover:bg-gray-100 hover:text-[#F38D22] transition">Logout</a>
+    </nav>
+  </aside>
+
+  <!-- SECTION WRAPPER -->
+  <section class="pt-24 ml-0 md:ml-60 px-4 sm:px-6 pb-10 bg-gray-100 min-h-screen space-y-8">
+
+    <div class="flex flex-col lg:flex-row justify-between gap-6">
+      <!-- Card Stats -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols gap-6 flex-1">
+        <!-- Total Jenis Minyak -->
+        <div class="bg-white shadow-md rounded-xl p-6 flex items-center gap-4">
+          <div class="bg-orange-100 text-orange-600 rounded-full p-3">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 2a10 10 0 100 20 10 10 0 000-20zM12 6v6l4 2" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-sm text-gray-500">Jenis Minyak</p>
+            <p class="text-xl font-semibold">12</p>
+          </div>
+        </div>
+
+        <!-- Total Stok Minyak -->
+        <div class="bg-white shadow-md rounded-xl p-6 flex items-center gap-4">
+          <div class="bg-green-100 text-green-600 rounded-full p-3">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M4 6h16M4 10h16M4 14h10" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-sm text-gray-500">Total Stok (ml)</p>
+            <p class="text-xl font-semibold">5.000</p>
+          </div>
+        </div>
+
+        <!-- Minyak Tersedia -->
+        <div class="bg-white shadow-md rounded-xl p-6 flex items-center gap-4">
+          <div class="bg-yellow-100 text-yellow-600 rounded-full p-3">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 17a4 4 0 006 0M12 3v2m0 16v2m-6-6h12" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-sm text-gray-500">Minyak Tersedia</p>
+            <p class="text-xl font-semibold">8</p>
+          </div>
+        </div>
+
+        <!-- Total Permintaan -->
+        <div class="bg-white shadow-md rounded-xl p-6 flex items-center gap-4 lg:col-span-1">
+          <div class="bg-blue-100 text-blue-600 rounded-full p-3">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M16 17l-4-4-4 4m8-6l-4-4-4 4" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-sm text-gray-500">Total Permintaan</p>
+            <p class="text-xl font-semibold">27</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kalender Real-Time -->
+      <div class="w-full lg:w-1/4 bg-white shadow-md rounded-xl p-4" id="calendar">
+        <h3 class="text-md font-semibold mb-3 text-gray-700">Kalender</h3>
+        <div class="flex justify-between items-center mb-3">
+          <button onclick="changeMonth(-1)" class="text-gray-600 hover:text-gray-800">&lt;</button>
+          <p id="monthYear" class="text-sm font-medium"></p>
+          <button onclick="changeMonth(1)" class="text-gray-600 hover:text-gray-800">&gt;</button>
+        </div>
+        <div class="grid grid-cols-7 text-xs text-center text-gray-500 mb-1">
+          <div>Min</div>
+          <div>Sen</div>
+          <div>Sel</div>
+          <div>Rab</div>
+          <div>Kam</div>
+          <div>Jum</div>
+          <div>Sab</div>
+        </div>
+        <div id="calendarDays" class="grid grid-cols-7 text-sm text-center gap-y-1">
+          <!-- Tanggal akan dirender via JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Table Section -->
+    <div class="bg-white shadow-md rounded-xl p-6 overflow-x-auto w-full mt-8">
+      <div class="mb-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex justify-start sm:w-1/3">
+          <a href="create.html"
+            class="bg-[#F38D22] text-white px-4 py-2 rounded-lg text-sm hover:bg-[#d97b1b] transition">
+            Tambah Data
+          </a>
+        </div>
+        <div class="text-center sm:w-1/3">
+          <h2 class="text-lg font-bold">DATA MINYAK ATSIRI </h2>
+        </div>
+        <div class="flex justify-end sm:w-1/3">
+          <input type="text" placeholder="Search..."
+            class="px-4 py-2 border border-gray-300 rounded-lg text-sm w-full max-w-xs focus:outline-none focus:ring-2 focus:ring-[#F38D22]" />
+        </div>
+      </div>
+
+      <table class="min-w-full divide-y divide-gray-200 text-sm text-left">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="px-4 py-2 font-semibold whitespace-nowrap">No</th>
+            <th class="px-4 py-2 font-semibold whitespace-nowrap">Gambar</th>
+            <th class="px-4 py-2 font-semibold whitespace-nowrap">Jenis Minyak</th>
+            <th class="px-4 py-2 font-semibold whitespace-nowrap">Jumlah (ml)</th>
+            <th class="px-4 py-2 font-semibold whitespace-nowrap">Deskripsi</th>
+            <th class="px-4 py-2 font-semibold whitespace-nowrap">Aksi</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr>
+            <td class="px-4 py-2">1</td>
+            <td class="px-4 py-2">
+              <img src="https://via.placeholder.com/40" class="w-10 h-10 rounded object-cover" alt="Cengkeh">
+            </td>
+            <td class="px-4 py-2">Cengkeh</td>
+            <td class="px-4 py-2">250</td>
+            <td class="px-4 py-2">Minyak atsiri dari bunga cengkeh kering.</td>
+            <td class="px-4 py-2">
+              <div class="flex gap-2">
+                <a href="edit.html"
+                  class="bg-green-500 text-white text-sm px-3 py-1 rounded-full hover:bg-green-600 transition">Edit</a>
+                <button
+                  class="bg-red-500 text-white text-sm px-3 py-1 rounded-full hover:bg-red-600 transition">Hapus</button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2">2</td>
+            <td class="px-4 py-2">
+              <img src="https://via.placeholder.com/40" class="w-10 h-10 rounded object-cover" alt="Nilam">
+            </td>
+            <td class="px-4 py-2">Nilam</td>
+            <td class="px-4 py-2">150</td>
+            <td class="px-4 py-2">Minyak nilam berkualitas tinggi.</td>
+            <td class="px-4 py-2">
+              <div class="flex gap-2">
+                <a href="edit.html"
+                  class="bg-green-500 text-white text-sm px-3 py-1 rounded-full hover:bg-green-600 transition">Edit</a>
+                <button
+                  class="bg-red-500 text-white text-sm px-3 py-1 rounded-full hover:bg-red-600 transition">Hapus</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <script>
+    const monthNames = [
+      "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+      "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+    ];
+
+    let today = new Date();
+    let currentMonth = today.getMonth();
+    let currentYear = today.getFullYear();
+
+    function renderCalendar(month, year) {
+      const calendarDays = document.getElementById("calendarDays");
+      const monthYear = document.getElementById("monthYear");
+      calendarDays.innerHTML = "";
+
+      const firstDay = new Date(year, month).getDay();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+      monthYear.textContent = `${monthNames[month]} ${year}`;
+
+      for (let i = 0; i < firstDay; i++) {
+        calendarDays.appendChild(document.createElement("div"));
+      }
+
+      for (let i = 1; i <= daysInMonth; i++) {
+        const day = document.createElement("div");
+        day.textContent = i;
+        day.className = "text-gray-700 rounded-full hover:bg-orange-200 w-8 h-8 flex items-center justify-center mx-auto";
+
+        if (
+          i === today.getDate() &&
+          month === today.getMonth() &&
+          year === today.getFullYear()
+        ) {
+          day.classList.add("bg-orange-400", "text-white");
+        }
+
+        calendarDays.appendChild(day);
+      }
+    }
+
+    function changeMonth(offset) {
+      currentMonth += offset;
+      if (currentMonth < 0) {
+        currentMonth = 11;
+        currentYear--;
+      } else if (currentMonth > 11) {
+        currentMonth = 0;
+        currentYear++;
+      }
+      renderCalendar(currentMonth, currentYear);
+    }
+
+    renderCalendar(currentMonth, currentYear);
+
+    const toggleBtn = document.getElementById('toggleSidebar');
+    const sidebar = document.getElementById('sidebar');
+    const iconHamburger = document.getElementById('iconHamburger');
+    const iconClose = document.getElementById('iconClose');
+
+    toggleBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('-translate-x-full');
+      iconHamburger.classList.toggle('hidden');
+      iconClose.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>
