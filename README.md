@@ -33,9 +33,9 @@ Website ini dirancang dengan tampilan modern, bersih, dan informatif untuk mendu
 
 | Teknologi | Logo |
 |---------|------|
-| HTML5 | ![HTML5](https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg) |
-| CSS3 | ![CSS3](https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg) |
-| Tailwind CSS | ![Tailwind](https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg) |
+| HTML5 | ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white) |
+| CSS3 | ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white) |
+| Tailwind CSS | ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-06B6D4?logo=tailwind-css&logoColor=white) |
 | JavaScript | ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black) |
 | PHP | ![PHP](https://img.shields.io/badge/PHP-777BB4?logo=php&logoColor=white) |
 | Laravel | ![Laravel](https://img.shields.io/badge/Laravel-EF3B2D?logo=laravel&logoColor=white) |
